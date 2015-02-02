@@ -1,6 +1,6 @@
 window.onload = function()
 {
-
+	document.getElementById('output').innerHTML = 'test';
 }
 
 
@@ -41,6 +41,18 @@ function sendRequest()
 		{
 			var resp = JSON.parse(this.responseText);
 			localStorage.setItem("ServerResponse", resp);
+
+			var newGistArray = new Array();
+	
+			for(var i = 0; i < resp.length; ++i)
+			{
+				newGistArray.push(resp[i].url);
+			}
+
+			localStorage.setItem("newArray", newGistArray);
+
+			createResultList(document.getElementById(outputList), newGistArray);
+
 		}
 
 	}
@@ -49,6 +61,9 @@ function sendRequest()
 
 	req.open('GET', url, true);
 	req.send(null);
+
+	//displayLocalStorage("ServerResponse");
+	displayLocalStorage("newArray");
 
 }
 
@@ -64,4 +79,19 @@ function createURL(initialURL)
 	}
 	
 	return newURL;
+}
+
+function displayLocalStorage(item)
+{
+	document.getElementById('output').innerHTML = localStorage.getItem(item);
+	
+}
+
+createResultList(listTarget, dataList)
+{
+	dataList.forEach(function(entry)
+	{
+		document
+	}
+	
 }
