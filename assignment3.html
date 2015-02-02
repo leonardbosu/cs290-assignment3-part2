@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Assignment 3 part 2 </title>
+		<script src='assignment.js'></script>
+	</head>
+	<body>
+			<section>
+			<form action=" https://api.github.com/gists/public" method="GET">
+				<fieldset width> <!-- HTML5-tutorials.org/forms/checkboxes -->
+					<legend> <b>GIST Search Options </b></legend>
+					Language Filter <br>
+					<input type="checkbox" id="userLangPython" value="python">Python <br>
+					<input type="checkbox" id="userLangJSON" value="JSON">JSON <br>
+					<input type="checkbox" id="userLangJS" value="javascript">javascript <br>
+					<input type="checkbox" id="userLangSQL" value="SQL">SQL<br><br><br>
+					Pages To View <br>
+					<input id="userPages" type="number" min="1" max="5" step="1"><br> <br> <br>
+
+					<button type="button" onclick="saveSettings()" > Save Settings </button>  
+
+					<input type="submit" value ="SEARCH"><br>
+				</fieldset>
+			</form>
+			</section>
+
+
+			<section>
+			</ul>
+			</section>
+
+
+	</body>
+</html>
