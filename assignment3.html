@@ -3,11 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title> Assignment 3 part 2 </title>
-		<script src='assignment.js'></script>
+		<script src='assignment3.js'></script>
 	</head>
 	<body>
 			<section>
-			<form action=" https://api.github.com/gists/public" method="GET">
 				<fieldset width> <!-- HTML5-tutorials.org/forms/checkboxes -->
 					<legend> <b>GIST Search Options </b></legend>
 					Language Filter <br>
@@ -18,11 +17,10 @@
 					Pages To View <br>
 					<input id="userPages" type="number" min="1" max="5" step="1"><br> <br> <br>
 
-					<button type="button" onclick="saveSettings()" > Save Settings </button>  
+					<button type="button" onclick="saveSettings()"> Save Settings </button>  
 
-					<input type="submit" value ="SEARCH"><br>
+					<button type="button" onclick="sendRequest()"> SEARCH</button> <br
 				</fieldset>
-			</form>
 			</section>
 
 
