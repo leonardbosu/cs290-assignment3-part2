@@ -1,0 +1,9 @@
+Start: Sun, 1 Feb 2015 17:20:39 -0800
+End: Sun, 1 Feb 2015 23:51:21 -0800
+Tasks: added simple parsing of AJAX request
+Start: Sun, 1 Feb 2015 16:20:31 -0800
+End: Sun, 1 Feb 2015 17:20:39 -0800
+Tasks: added AJAX request and page modifier
+Start: Sun, 1 Feb 2015 12:10:00 -0800
+End: Sun, 1 Feb 2015 16:20:31 -0800
+Tasks: initial commit; basic webpage and local storage
