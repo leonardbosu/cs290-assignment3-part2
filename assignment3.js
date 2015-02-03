@@ -24,48 +24,52 @@ function saveSettings()
 
 }
 
-function sendRequest(page)
+function sendRequest()
 {
-	var req = new XMLHttpRequest();
-	if (!req)
-	{
-		throw 'Unable to create HTTPRequest';
-	}
+	var pageCheck = localStorage.getItem("userStorePages");
 
-	var url = "https://api.github.com/gists/public";
-
-	req.onreadystatechange = function()
+	for (var i = 0; i < pageCheck; ++i)
 	{
-		//process sever request
-		if (this.readyState === 4)
+		var req = new XMLHttpRequest();
+		if (!req)
 		{
-			var resp = JSON.parse(this.responseText);
-			var oldStorage = localStorage.getItem("ServerResponse");
+			throw 'Unable to create HTTPRequest';
+		}
 
-			localStorage.setItem("ServerResponse", oldStorage + resp);
-
-			var newGistArray = new Array();
 	
-			for(var i = 0; i < resp.length; ++i)
-			{
-				newGistArray.push(resp[i].url);
-			}
+		req.onreadystatechange = function()
+		{
+				//process sever request
+				if (this.readyState === 4)
+				{
+					var resp = JSON.parse(this.responseText);
 
-			localStorage.setItem("newArray", newGistArray);
+					localStorage.setItem("ServerResponse", resp);
 
-			//createResultList(document.getElementById(outputList), newGistArray);
+					var newGistArray = new Array();
+			
+					for(var i = 0; i < resp.length; ++i)
+					{
+						newGistArray.push(resp[i].url);
+					}
+
+					localStorage.setItem("newArray", newGistArray);
+
+					//createResultList(document.getElementById(outputList), newGistArray);
+
+				}
 
 		}
 
+		var url = "https://api.github.com/gists/public";
+		url = createURL(url, i+1);
+
+		req.open('GET', url, true);
+		req.send(null);
+
+		//displayLocalStorage("ServerResponse");
+		displayLocalStorage("newArray");
 	}
-
-	url = createURL(url, page);
-
-	req.open('GET', url, true);
-	req.send(null);
-
-	//displayLocalStorage("ServerResponse");
-	displayLocalStorage("newArray");
 
 }
 
@@ -81,24 +85,14 @@ function createURL(initialURL, page)
 
 function displayLocalStorage(item)
 {
-	document.getElementById('output').innerHTML = localStorage.getItem(item);
+	document.getElementById('output').innerHTML = localStorage.getItem(item); 
 	
 }
-
 createResultList(listTarget, dataList)
 {
 	dataList.forEach(function(entry)
 	{
 		document
-	})
+	});
 	
-}
-
-function pagination()
-{
-	var pageCheck = localStorage.getItem("userStorePages");
-	for (var i = 0; i < pageCheck; ++i)
-	{
-		sendRequest(i+1);
-	}
 }
