@@ -92,6 +92,6 @@ createResultList(listTarget, dataList)
 	dataList.forEach(function(entry)
 	{
 		document
-	}
+	})
 	
 }
