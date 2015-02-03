@@ -1,6 +1,6 @@
 window.onload = function()
 {
-	document.getElementById('output').innerHTML = 'test';
+	document.getElementById('output').innerHTML = 'no results';
 }
 
 
@@ -24,7 +24,7 @@ function saveSettings()
 
 }
 
-function sendRequest()
+function sendRequest(page)
 {
 	var req = new XMLHttpRequest();
 	if (!req)
@@ -40,7 +40,9 @@ function sendRequest()
 		if (this.readyState === 4)
 		{
 			var resp = JSON.parse(this.responseText);
-			localStorage.setItem("ServerResponse", resp);
+			var oldStorage = localStorage.getItem("ServerResponse");
+
+			localStorage.setItem("ServerResponse", oldStorage + resp);
 
 			var newGistArray = new Array();
 	
@@ -51,13 +53,13 @@ function sendRequest()
 
 			localStorage.setItem("newArray", newGistArray);
 
-			createResultList(document.getElementById(outputList), newGistArray);
+			//createResultList(document.getElementById(outputList), newGistArray);
 
 		}
 
 	}
 
-	url = createURL(url);
+	url = createURL(url, page);
 
 	req.open('GET', url, true);
 	req.send(null);
@@ -67,16 +69,12 @@ function sendRequest()
 
 }
 
-function createURL(initialURL)
+function createURL(initialURL, page)
 {
-	//?page=3
-	var pageCheck = localStorage.getItem("userStorePages");
 	var newURL = initialURL;
 
-	if (pageCheck > 0)
-	{
-		newURL += ("?page=" + pageCheck);
-	}
+	
+		newURL += ("?page=" + page);
 	
 	return newURL;
 }
@@ -94,4 +92,13 @@ createResultList(listTarget, dataList)
 		document
 	})
 	
+}
+
+function pagination()
+{
+	var pageCheck = localStorage.getItem("userStorePages");
+	for (var i = 0; i < pageCheck; ++i)
+	{
+		sendRequest(i+1);
+	}
 }
