@@ -1,9 +1,6 @@
 window.onload = function()
 {
-	if (localStorage.getItem("faveList") === null)
-	{
-	
-	}
+	document.getElementById('output').innerHTML = 'no results';
 }
 
 
@@ -72,7 +69,6 @@ function sendRequest()
 
 		//displayLocalStorage("ServerResponse");
 		displayLocalStorage("newArray");
-		displayLocalStorage("faveList");
 	}
 
 }
@@ -89,53 +85,29 @@ function createURL(initialURL, page)
 
 function displayLocalStorage(item)
 {
-	if(item != null){
+	//document.getElementById('output').innerHTML = localStorage.getItem(item); 
 
-	var passedString = localStorage.getItem(item);
-	var newArray = passedString.split(',');
-
-	//below taken from javascript-examples.net/item/an-html-list-from-a-javascript-array
 
 	var listContainer = document.createElement("div");
 	document.getElementById('output').appendChild(listContainer);
 	var listElement = document.createElement("ul");
-	listContainer.appendChild(listElement);
-	var numberOfListItems = newArray.length;
+	listContainer.appendCHild(listElement);
+	var numberOfListItems = item.length;
 
 	for (var i = 0; i < numberOfListItems; ++i)
 	{
-		var listItemContainer = document.createElement("div");
-		listItemContainer.id = newArray[i];
-		listElement.appendChild(listItemContainer);
-
-		var listItem = document.createElement("li");
-		listItemContainer.appendChild(listItem);
-
-		var listLink = document.createElement("a");
-		listLink.href = newArray[i];
-		listItem.appendChild(listLink);
-
-		var linkText = document.createTextNode(newArray[i]);
-		listLink.appendChild(linkText);
-
-		var btn = document.createElement("Button");
-		var btnText = document.createTextNode("Add to Favorites");
-		btn.appendChild(btnText);
-		btn.onclick = function()
-		{
-			var tempList = localStorage.getItem("faveList");
-			tempList = tempList + "," + newArray[i];
-			localStorage.setItem("faveList", tempList);
-		};
-		listItem.appendChild(btn);
-
+		var listItem = document.createELement("li");
+		listItem.innerHTML = item[i];
+		listElement.appendChild(listItem);
 	}
-	}
-
+	
+	
 }
-function addToFavorites(index, value)
+/*createResultList(listTarget, dataList)
 {
-	var tempList = localStorage.getItem("faveList");
-	tempList = tempList + "," + value;
-	localStorage.setItem("faveList", tempList);
-}
+	dataList.forEach(function(entry)
+	{
+		document
+	});
+	
+}*/
